@@ -1,0 +1,222 @@
+List of 8-bit cheats (in no order)
+
+Program fragment to disable tape-locking:
+
+P%=&900:[OPT0:LDA&3CA:AND#254:STA&3CA:RTS:]:?&220=0:?&221=9:*FX 14,4
+
+Pokes:
+Gyroscope ™ Elk version
+Lives:          ?&1951=<# of lives>
+Infinite lives: ?&1D08=&EA
+                ?&1D09=&EA
+                ?&1D0A=&EA
+
+Tarzan Boy
+Lives           ?&411A=<# of lives>
+Infinite Lives  ?&42A2=&EA
+                ?&42A3=&EA
+                ?&42A4=&EA
+
+Caveman Capers
+Lives           ?&1C69=<# of lives>
+                ?&1BA7=<# of lives>
+                ?&1CDD=<# of lives>
+
+Electron Invaders
+Lives           ?&307C=<# of lives>
+                ?&3080=&EA
+                ?&3081=&EA
+                ?&3082=&EA
+
+Jet Power Jack
+                LOAD "JACK5"
+
+Infinite Lives: LIST 390
+                copy the line, but leave out the L%=L%-1
+
+No sprite collision:    390 REM
+
+                SAVE "JACK5"
+
+Overdrive (Elk version)
+                PAGE=&2300
+                LOAD "OVER2"
+
+Starting level  LIST 100
+                copy the line, but the change the number after ?stage% to a value 
+                between 1 & 5
+
+To always finish        LIST 200
+                copy the line, but alter the bit  ?BONUS>43 to ?BONUS>—1
+
+Arcadians       
+Lives           ?&4EBE=<# of lives>
+Infnite Lives   ?&592F=&EA
+                ?&5930=&EA
+                ?&5931=&EA
+
+Impact (Elk version)
+Cheat mode      On title screenm press ESCAPE, FUNC, CTRL & SHIFT at once.
+                Then in game J skips level and G gives extra credits
+
+Hobgoblin
+BBC cheat mode  On title screen press C, H, E, A & T all at once - and don't
+                swear at me afterwards!
+Elk cheat mode  In game pause and then press CTRL+L for an extra life
+
+Hobgoblin 2
+Elk cheat mode  In game press W, E, T, C & > for 20 lives and 99% of deaths
+                give an object
+
+Psycastria 2
+Cheat mode      On title screen press I, D, T, L & N password is SHOTOKAN, 
+                this gives you 123 lives
+
+
+Passwords
+Repton
+n/a
+CHAMELEON
+TERRAPIN
+SIDEWINDER
+GECKO
+PYTHON
+SALAMANDER
+IGUANA
+CUTTLEFISH
+OCTOPUS
+GIANT CLAM
+THE KRAKEN
+
+Repton 3 Passwords ™ in sequential order  A — H
+        Password                Editcode
+
+        File: Repton 3: Prelude
+        PRELUDE         56882
+        CITADEL         44544
+        MORNING         13330
+        AWKWARD         33023
+        FRITTER         24656
+        LAWLESS         8515
+        RATION          3447
+        TOBACCO         2303
+
+        File: Repton 3: Toccata
+        TOCCATA         48042
+        UPSTART         6527
+        OCTAGON         27492
+        CHAOTIC         20312
+        MAJESTY         1356
+        REVENUE         16713
+        FORSEE          50190
+        RESERVE         65280
+
+        File: Repton 3: Finale
+        FINALE          27246
+        ENLIVEN         24937
+        CONTEST         3266
+        ILLEGAL         19786
+        APPEASE         3346
+        STUDENT         20055
+        AVERAGE         16660
+        PHOENIX         51762
+
+        File: Life of Repton: Baby
+        BABY            56882
+        KEYHOLE         44287
+        FAILURE         58847
+        GADGETS         24882
+        REACTOR         61197
+        REUNION         19047
+        OBSERVE         5067
+        DIVERGE         36440
+
+        File: Life of Repton: School
+        SCHOOL          36216
+        ADVANCE         14562
+        BAPTISE         49514
+        LESSONS         39008
+        ZIPPERS         21622
+        BLEAKLY         27442
+        CORPSES         4831
+        ZYGOTES         21882
+
+        File: Life of Repton: Teenage
+        TEENAGE         61268
+        TURBINE         32854
+        WEAKEN          51857
+        CHEAPLY         53452
+        OVERLAP         22068
+        PADLOCK         43672
+        DIALLED         13517
+        CIRCLES         4405
+
+        File: Life of Repton: Work
+        WORK            21012
+        INCLINE         7014
+        HOSTAGE         60159
+        TWISTED         9677
+        TAXABLE         14439
+        WARTIME         21383
+        ALGEBRA         57802
+        BETTING         996
+
+        File: Life of Repton: OAP
+        OAP             20910
+        UNAWARE         18760
+        SOAKING         57020
+        EVOLVES         21489
+        QUIBBLE         52892
+        NATIVES         30995
+        JUMPING         21164
+        SHALLOW         35064
+
+        File: Repton Thru‘ Time: Prehist
+        PREHIST         12345
+        HEATERS         16494
+        HILLOCK         29652
+        PILFERS         28265
+        MEDITATE        25655
+        COMPACT         9761
+        CARTOON         43981
+        TUBULAR         35682
+
+        File: Repton Thru‘ Time: Egypt
+        EGYPT           8473
+        FAVOURS         5012
+        HAPPENS         48238
+        PERSONS         2247
+        CONQUER         31761
+        EVENING         19495
+        MASTERS         52592
+        PIMPLES         51035
+
+        File: Repton Thru‘ Time: Victori
+        VICTORI         054066
+        MERCURY         57950
+        CLEAVER         62809
+        BINDERS         31463
+        CONFUSE         35584
+        JINGLES         10659
+        DOLPHIN         45367
+        MINSTER         23180
+
+        File: Repton Thru‘ Time: Now
+        NOW             54524
+        OCTAGON         21370
+        CASTLES         48417
+        CHARLES         9698
+        GREATER         58449
+        BOOKLET         23963
+        FUNTIME         64332
+        SAVOURS         29294
+
+        File: Repton Thru‘ Time: Future
+        FUTURE          33776
+        ORACLES         1119
+        STAPLER         36126
+        DANCING         46223
+        FANCIER         48475
+        BANANAS         34409
+        EVEREST         54136
+        KINGDOM         53546

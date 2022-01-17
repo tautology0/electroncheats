@@ -1,0 +1,8 @@
+REM>Socche
+REM (c) Dave Lodge
+MODE 5
+VDU23;8202;0;0;0;0;19,7,2;0;28,3,30,16,26:*LOAD SSCREEN
+INPUT "Skill ";skill 
+INPUT "Strength ";strength  
+ OSCLI"K.1 LO.""2SOCCER""|M495FORJ=1 TO &20:J?&5167="+STR$skill+":J?&5147="+STR$strength+":NEXT|MRUN|M" 
+*FX 138,0,129

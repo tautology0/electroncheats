@@ -1,0 +1,39 @@
+REM>Predche
+REM (c) Dave Lodge
+MODE 6
+PROCctru("Predator Cheat!!")
+PRINT':PROCctr("By Dave Lodge")
+PRINT
+A$="*Key 1 LOAD ""Pred""|M180|M120|M125|MRUN|M|*Load Pred4|M*FX 13,4|M"
+IF FNask("Infinite Energy?")   A$=A$+"?&2491=&EA:?&2492=&EA|M"
+IF FNask("Infinite Lives?")    A$=A$+"?&249A=&EA:?&249B=&EA|M"
+IF FNask("Infinite Grenades?") A$=A$+"?&23FD=&EA:?&23FE=&EA|M"
+IF FNask("Infinite Time?")     A$=A$+"?&2682=&EA:?&2683=&EA:?&2684=&EA|M"
+INPUT "Starting Level"lev:A$=A$+"?&231D="+STR$(lev-1)+"|M"
+A$=A$+"CALL &2253|M" 
+PRINT "Please insert Sam 14 Disc or tape wound"
+PRINT "to file ""Pred""!"
+PRINT "And press Space."
+REPEATUNTILGET=32
+P%=&880:[OPT0:LDA&3CA:AND#254:STA&3CA:RTS:]:?&220=&80:?&221=8:*FX 14,4
+OSCLIA$
+*FX15
+*FX 138,0,129
+END
+:
+DEFPROCctru(C$)
+PRINT TAB(20-LEN(C$)/2);
+FOR J=1 TO LENC$
+?&70=ASC(MID$(C$,J,1))
+A%=&A:X%=&70:Y%=0:CALL &FFF1
+VDU23,255,?&71,?&72,?&73,?&74,?&75,?&76,?&77,?&78OR255,255
+NEXT:ENDPROC
+:
+DEFPROCctr(C$)
+PRINT TAB(20-LEN(C$)/2);C$
+ENDPROC
+:
+DEF FNask(Q$)
+PRINT Q$
+REPEATB$=GET$:A=INSTR("YyNn",B$):UNTILA
+IF A<3 =TRUE ELSE=FALSE

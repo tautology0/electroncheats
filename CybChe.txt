@@ -1,0 +1,36 @@
+REM>CybChe
+REM By Dave Lodge
+MODE 6
+PROCctru("Cyborg Warriors Cheat!!")
+PRINT':PROCctr("By Dave Lodge")
+PRINT
+A$="*Key 1 LOAD ""Cybload""|M410*L. Cyborg4|M140|M180|M*FX13,4|M"
+IF FNask("Infinite Lives?")       A$=A$+"420?&1556=&EA:?&1557=&EA|M"
+IF FNask("Super Fire rate?")      A$=A$+"430?&1389=&EA:?&138A=&EA|M"
+A$=A$+"450CALL &1200|MRUN|M"
+PRINT "Please insert Sam 15 Disc or tape wound"
+PRINT "to file ""CybLoad""!"
+PRINT "And press Space."
+REPEATUNTILGET=32
+P%=&880:[OPT0:LDA&3CA:AND#254:STA&3CA:RTS:]:?&220=&80:?&221=8:*FX 14,4
+OSCLIA$
+*FX15
+*FX 138,0,129
+END
+:
+DEFPROCctru(C$)
+PRINT TAB(20-LEN(C$)/2);
+FOR J=1 TO LENC$
+?&70=ASC(MID$(C$,J,1))
+A%=&A:X%=&70:Y%=0:CALL &FFF1
+VDU23,255,?&71,?&72,?&73,?&74,?&75,?&76,?&77,?&78OR255,255
+NEXT:ENDPROC
+:
+DEFPROCctr(C$)
+PRINT TAB(20-LEN(C$)/2);C$
+ENDPROC
+:
+DEF FNask(Q$)
+PRINT Q$
+REPEATB$=GET$:A=INSTR("YyNn",B$):UNTILA
+IF A<3 =TRUE ELSE=FALSE

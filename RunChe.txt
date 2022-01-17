@@ -1,0 +1,39 @@
+   10REM>Runche
+   20REM (c) Dave Lodge
+   30MODE 6
+   40PROCctru("Strykers Run Cheat!!")
+   50PRINT':PROCctr("By Dave Lodge")
+   60PRINT
+   70A$="*Key 1 LOAD ""Loader""|M110|MRUN|M|*Load Run|M*FX 13,4|M"
+   80IF FNask("Infinite Energy?")   A$=A$+"?&111A=&EA:?&111B=&EA|M"
+   90IF FNask("Funny Grenade?")     A$=A$+"?&1BC3=&E6|M"
+  100IF FNask("Teleporter?")        ELSE GOTO110
+  101IF FNask("Swap Ends?")         A$=A$+"?&197A=&EA:?&197B=&EA|M":ELSE:A$=A$+"?&197A=&E6|M"
+  110INPUT "Amount of Lives"lives:A$=A$+"?&231D="+STR$(lives)+"|M"
+  120A$=A$+"CALL &5408|M"
+  130PRINT "Please insert Sam 1 Disc or tape wound"
+  140PRINT "to file ""Loader""!"
+  150PRINT "And press Space."
+  160REPEATUNTILGET=32
+  170P%=&880:[OPT0:LDA&3CA:AND#254:STA&3CA:RTS:]:?&220=&80:?&221=8:*FX 14,4
+  180OSCLIA$
+  190*FX15
+  200*FX 138,0,129
+  210END
+  220:
+  230DEFPROCctru(C$)
+  240PRINT TAB(20-LEN(C$)/2);
+  250FOR J=1 TO LENC$
+  260?&70=ASC(MID$(C$,J,1))
+  270A%=&A:X%=&70:Y%=0:CALL &FFF1
+  280VDU23,255,?&71,?&72,?&73,?&74,?&75,?&76,?&77,?&78OR255,255
+  290NEXT:ENDPROC
+  300:
+  310DEFPROCctr(C$)
+  320PRINT TAB(20-LEN(C$)/2);C$
+  330ENDPROC
+  340:
+  350DEF FNask(Q$)
+  360PRINT Q$
+  370REPEATB$=GET$:A=INSTR("YyNn",B$):UNTILA
+  380IF A<3 =TRUE ELSE=FALSE

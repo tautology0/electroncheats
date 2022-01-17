@@ -1,0 +1,35 @@
+REM>MoonC
+REM (c) Dave Lodge 1991
+MODE 6
+PROCctru("MoonRaider Cheat!!")
+PRINT':PROCctr("By Dave Lodge")
+PRINT
+A$="*Key 1 *LOAD ""Game""|M!&A00=&BD9E9DB6:!&A04=&DEEF97B7:!&A08=&C8|M*FX 13,4|M"
+IF FNask("Infinite Lives?")    A$=A$+"?&194B=&EA:?&194C=&EA:?&194D=&EA|M"
+INPUT "Amount of Lives? "lives:A$=A$+"?&1930="+STR$lives+"|M"
+A$=A$+"CALL &1900|M"
+PRINT "Please insert Sam 5 Disc or tape wound"
+PRINT "to file ""Game1""!"
+PRINT "And press Space."
+REPEATUNTILGET=32
+OSCLIA$
+*FX15
+*FX 138,0,129
+END
+:
+DEFPROCctru(C$)
+PRINT TAB(20-LEN(C$)/2);
+FOR J=1 TO LENC$
+?&70=ASC(MID$(C$,J,1))
+A%=&A:X%=&70:Y%=0:CALL &FFF1
+VDU23,255,?&71,?&72,?&73,?&74,?&75,?&76,?&77,?&78OR255,255
+NEXT:ENDPROC
+:
+DEFPROCctr(C$)
+PRINT TAB(20-LEN(C$)/2);C$
+ENDPROC
+:
+DEF FNask(Q$)
+PRINT Q$
+REPEATB$=GET$:A=INSTR("YyNn",B$):UNTILA
+IF A<3 =TRUE ELSE=FALSE

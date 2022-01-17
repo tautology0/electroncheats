@@ -1,0 +1,51 @@
+REM>NinjChe
+REM (c) Dave Lodge
+MODE 6
+PROCctru("Last Ninja II Cheat!!")
+PRINT':PROCctr("By Dave Lodge")
+PRINT
+A$="*Key 1 LOAD ""2Ninja""|M260END|M*FX13,4|M0|MRUN|M|*Load Ninja3|M"
+IF FNask("Infinite Lives?")     A$=A$+"?&2675=&EA:?&2676=&EA:?&2677=&EA|M"
+IF FNask("Infinite Shurikens?") A$=A$+"?&1FE1=&EA:?&1FE1=&EA|M"
+IF FNask("Code (Disc Only)?")   O%=OPENIN"Ninja3":PTR#O%=4609:B$=CHR$BGET#O%+CHR$BGET#O%+CHR$BGET#O%+CHR$BGET#O%:CLOSE#O%:PRINT B$
+IF FNask("Edit Objects?")       A$=A$+"?&2438=&4C:?&2439=&40:?&243A=&24|M":PROCobjects
+INPUT "Amount of lives?" lives :A$=A$+"?&24FC="+STR$lives+"|M"
+INPUT "Starting Level?" level  :A$=A$+"?&237F="+STR$(level+48)+":?&238B=?&237F:?&2430="+STR$(level-1)+"|M"
+A$=A$+"CALL &242F|M"
+PRINT "Please insert Sam 15 Disc or tape wound"
+PRINT "to file ""2Ninja""!"
+PRINT "And press Space."
+REPEATUNTILGET=32
+OSCLIA$
+*FX15
+*FX 138,0,129
+END
+:
+DEFPROCctru(C$)
+PRINT TAB(20-LEN(C$)/2);
+FOR J=1 TO LENC$
+?&70=ASC(MID$(C$,J,1))
+A%=&A:X%=&70:Y%=0:CALL &FFF1
+VDU23,255,?&71,?&72,?&73,?&74,?&75,?&76,?&77,?&78OR255,255
+NEXT:ENDPROC
+:
+DEFPROCctr(C$)
+PRINT TAB(20-LEN(C$)/2);C$
+ENDPROC
+:
+DEF FNask(Q$)
+PRINT Q$
+REPEATB$=GET$:A=INSTR("YyNn",B$):UNTILA
+IF A<3 =TRUE ELSE=FALSE
+:
+DEF PROCobjects
+FOR J=&37F TO &37F+&5F
+?J=0
+NEXT
+RESTORE
+FOR J=2 TO 19:READ B$
+IF FNask(B$+"?") J?&37F=&FF
+NEXT
+ENDPROC
+:
+DATA Shurieken,Nunchakas,Sword,Stick,Object Finder,Small Key,Claw,Hamburger,"T-Bar",Bottle,Big Key,Lit Bottle,Passcard,Chicken Leg,Poison,Spill (?),Rope,Poisoned Chicken

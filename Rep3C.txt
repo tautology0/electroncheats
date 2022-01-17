@@ -1,0 +1,166 @@
+REM>Rep3C
+REM Total Cheat for Repton 3 - Elk version
+REM Though the get edit codes & password bit will
+REM work on all 8-bit versions
+REM (c) Dave Lodge
+:
+ON ERROR IF ERR=17 RUN:ELSE MODE 6:REPORT:PRINT " at ";ERL:END
+:
+*FX 4 1
+REPEAT
+MODE 6
+A%=FNmenu
+t$=EVAL("FN"+STR$A%) 
+UNTIL.
+:
+Get Edit codes & Passwords
+DEFFN1
+PROCassemble
+REPEAT
+CLS
+INPUT "File to decode "file$
+IF file$<>"" OSCLI"Load "+file$
+CALL decode
+DIM pass$(7),edit(7)
+FOR I=0 TO 7
+offset=&31E0+(I*8)
+pass$(I) = $offset
+edit(I)  = ?((I*2)+&3230)+(?((I*2)+&3231)*256)
+NEXT
+CLS
+PRINT "Escape returns to main menu."
+REPEAT
+INPUT "Level "lev$
+IF lev$="ALL" FOR I=0 TO 7:PRINT pass$(I),edit(I):NEXT:ELSEPRINT pass$((VALlev$)-1),edit((VALlev$)-1)
+UNTIL.
+:
+DEFPROCassemble
+FOR pass=0 TO 2 STEP 2
+P%=&900
+[OPT pass
+.decode
+ LDA #&0
+ STA &70
+ LDX #&3F
+.cont
+ LDA &31E0,X
+ EOR &70
+ STA &31E0,X
+ INC &70
+ DEX
+ BPL cont
+ RTS
+]
+NEXT
+ENDPROC
+:
+Edit ALL screens with no
+Edit Codes!
+:
+DEFFN2
+FOR pass=0 TO 2 STEP 2
+P%=&900
+[OPT pass
+.inter
+ LDA &220
+ STA temp
+ LDA &221
+ STA temp+1
+ SEI
+ LDA #start MOD 256
+ STA &220
+ LDA #start DIV 256
+ STA &221
+ CLI
+ RTS
+:
+.start
+ LDA &585
+ CMP #&EA
+ BEQ quitt
+ CMP #&D0
+ BNE end
+ LDA #&EA
+ STA &585
+ STA &586
+ STA &57E
+ STA &57F
+.end
+ RTS
+.quitt
+ SEI
+ LDA temp
+ STA &220
+ LDA temp+1
+ STA &221
+ CLI
+ RTS
+.temp
+EQUW 0
+]
+NEXT
+?&585=0
+CALL inter
+*FX 14,4
+CHAIN "Editor"
+:
+Repton 3 Cheat
+:
+DEFFN3
+CLS
+A$="*K. 1 LO.""REPTON1""|M140*FX138 0 130|MRUN|M"
+PROCctru("Repton 3 Cheat!!")
+PRINT':PROCctr("By Dave Lodge")
+PRINT
+A$=A$+"*L.REPTON2|M?&1B3E="+STR$(A MOD 256)+"|M?&253C="+STR$(A DIV 256)+"|M"
+IF FNask("Infinite Time?")     A$=A$+"?&22FA=&EA:?&22FB=&EA|M"
+IF FNask("Infinite Lives?")    A$=A$+"?&5776=&EA|M"
+IF FNask("View all Maps?")     A$=A$+"?&5717=8|M"
+INPUT "Starting Level "A      :A$=A$+"?&1B34="+STR$(A-1)+"|M"
+INPUT "No. of Lives "A        :A$=A$+"?&1B3E="+STR$(A MOD 256)+"|M?&253C="+STR$(A DIV 256)+"|M"
+INPUT "Points for Creatures "A:A$=A$+"?&2F5B="+STR$A+"|M"
+INPUT "Points for Diamonds "A :A$=A$+"?&5367="+STR$A+"|M"
+INPUT "Points for creatures "A:A$=A$+"?&541F="+STR$A+"|M"
+A$=A$+"CALL&5600|M"
+PRINT "Please insert Repton 3 Disc or tape wound"
+PRINT "to file ""Repton1""!"
+PRINT "And press Space."
+REPEATUNTILGET=32
+P%=&880:[OPT0:LDA&3CA:AND#254:STA&3CA:RTS:]:?&220=&80:?&221=8:*FX 14,4
+OSCLIA$
+*FX 15 1
+*FX 138 0 129
+END
+:
+DEFFNmenu
+CLS
+PRINTTAB(8,10)"1.List Editcodes/passwords"
+PRINTTAB(8,11)"2.Edit with no Edit codes"
+PRINTTAB(8,12)"3.Game Cheats"
+Y=10
+VDU23,1,0;0;0;0;
+REPEAT
+PRINT TAB(6,Y)">"
+A=GET
+IF A=139 OR A=138 PRINT TAB(6,Y)" "
+IF A=139 AND Y>10 Y=Y-1
+IF A=138 AND Y<12 Y=Y+1
+UNTIL A=13
+=(Y-9)
+:
+DEFPROCctru(C$)
+PRINT TAB(20-LEN(C$)/2);
+FOR J=1 TO LENC$
+?&70=ASC(MID$(C$,J,1))
+A%=&A:X%=&70:Y%=0:CALL &FFF1
+VDU23,255,?&71,?&72,?&73,?&74,?&75,?&76,?&77,?&78OR255,255
+NEXT:ENDPROC
+:
+DEFPROCctr(C$)
+PRINT TAB(20-LEN(C$)/2);C$
+ENDPROC
+:
+DEF FNask(Q$)
+PRINT Q$
+REPEATB$=GET$:A=INSTR("YyNn",B$):UNTILA
+IF A<3 =TRUE ELSE=FALSE

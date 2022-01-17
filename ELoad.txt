@@ -1,0 +1,50 @@
+REM>ELoad
+REM Star Port Disc Loader
+REM & Cheats, By Dave Lodge
+REM (c) 1991
+:
+MODE 6:PROCassem
+PRINT "Cheat? (Y/N)":
+Yes=(GET$="Y")
+IF Yes ELSE OSCLI"Load ELOADT":PROCcutout:MODE5:CALL &35B0:END
+PRINT "Infinite Oxygen? (Y/N)":?&70=(GET$="Y") 
+PRINT "Jet Pack? (Y/N)":?&71=(GET$="Y")
+*L. ELOADT
+PROCcutout
+?&36ED=&60
+MODE 5
+CALL &35B0
+CALL &5500
+END
+:
+DEF PROCcutout
+!&354F=&EAEAEAEA
+?&3554=&EA
+?&3555=&EA
+?&3556=&EA
+ENDPROC
+:
+DEF PROCassem
+FOR pass=0 TO 2 STEP 2
+P%=&5500
+[OPT pass
+ LDX #os MOD 256
+ LDY #os DIV 256
+ JSR &FFF7
+ LDA &70
+ BEQ cont
+ LDA #&EA 
+ STA &2A42
+ STA &2A43
+ STA &2A44
+.cont
+ LDA &71
+ BEQ ret
+ LDA #&EA
+ STA &3395
+ STA &3396
+.ret
+ JMP &373F
+.os
+EQUS "*Load ESTAR3"+CHR$13
+]:NEXT:ENDPROC
